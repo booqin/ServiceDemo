@@ -11,7 +11,11 @@
         </activity>
         <activity android:name=".TestActivity">
         </activity>
+        <activity android:name=".MyClientActivity"/>
+        <activity android:name=".MyBinderActivity" />
         <service android:name=".services.BinderService"/>
+        <service android:name=".services.RemoteService"
+            android:process=":Remote"/>
     </application>
 
 </manifest>

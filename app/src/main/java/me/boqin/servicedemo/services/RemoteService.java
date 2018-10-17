@@ -32,7 +32,13 @@ public class RemoteService extends Service {
 
         @Override
         public String getProcess(String name) throws RemoteException {
-            return Thread.currentThread().getName();
+            try {
+                //模拟耗时操作
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return Thread.currentThread().toString();
         }
     };
 }

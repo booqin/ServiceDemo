@@ -12,7 +12,7 @@ import me.boqin.servicedemo.services.BinderService;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mStart, mStop, mBind, mUnBind, mGo, mForeground;
+    private Button mBinder, mMessenger, mAidl;
 
     private BinderService mBinderService;
 
@@ -38,100 +38,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mStart = findViewById(R.id.start);
-        mStop = findViewById(R.id.stop);
-        mBind = findViewById(R.id.bind);
-        mUnBind = findViewById(R.id.unbind);
-        mGo = findViewById(R.id.go);
-        mForeground = findViewById(R.id.foreground);
+        mBinder = findViewById(R.id.binder);
+        mMessenger = findViewById(R.id.messenger);
+        mAidl = findViewById(R.id.aidl);
 
 
-        mStart.setOnClickListener(new View.OnClickListener() {
+        mBinder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (mBinderService!=null) {
-//                    TargetBean targetBean = new TargetBean();
-//                    targetBean.setId(1);
-//                    targetBean.setName("hello");
-//                    mBinderService.setTargetBean(targetBean);
-//                    mBinderService.printBean();
-//                }
-                Intent intent = new Intent(getApplicationContext(), BinderService.class);
-
-                getApplicationContext().startService(intent);
+                Intent intent = new Intent(getApplicationContext(), MyBinderActivity.class);
+                getApplicationContext().startActivity(intent);
             }
         });
 
-        mStop.setOnClickListener(new View.OnClickListener() {
+        mMessenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BinderService.class);
-
-                getApplicationContext().stopService(intent);
+//                Intent intent = new Intent(getApplicationContext(), BinderService.class);
+//
+//                getApplicationContext().stopService(intent);
             }
         });
 
-        mBind.setOnClickListener(new View.OnClickListener() {
+        mAidl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BinderService.class);
+                Intent intent = new Intent(getApplicationContext(), MyClientActivity.class);
 
-                getApplicationContext().bindService(intent, new ServiceConnection() {
-                    @Override
-                    public void onServiceConnected(ComponentName name, IBinder service) {
-                        mBinderService = ((BinderService.MyBinder) service).getService();
-                        TargetBean targetBean = new TargetBean();
-                        targetBean.setId(1);
-                        targetBean.setName("hello");
-                        mBinderService.setTargetBean(targetBean);
-                        mBinderService.printBean();
-                    }
-
-                    @Override
-                    public void onServiceDisconnected(ComponentName name) {
-                        mBinderService = null;
-                    }
-                }, BIND_AUTO_CREATE);
+                getApplicationContext().startActivity(intent);
             }
         });
 
-        mUnBind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getApplicationContext().unbindService(new ServiceConnection() {
-                    @Override
-                    public void onServiceConnected(ComponentName name, IBinder service) {
-                        mBinderService = ((BinderService.MyBinder) service).getService();
-                        TargetBean targetBean = new TargetBean();
-                        targetBean.setId(1);
-                        targetBean.setName("hello");
-                        mBinderService.setTargetBean(targetBean);
-                        mBinderService.printBean();
-                    }
-
-                    @Override
-                    public void onServiceDisconnected(ComponentName name) {
-                        mBinderService = null;
-                    }
-                });
-            }
-        });
-
-        mGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(v.getContext(), TestActivity.class);
-                v.getContext().startActivity(mIntent);
-                finish();
-            }
-        });
-
-        mForeground.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
     }
 

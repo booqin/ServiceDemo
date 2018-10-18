@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import me.boqin.servicedemo.services.BinderService;
+import me.boqin.servicedemo.services.MessengerService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,9 +55,8 @@ public class MainActivity extends AppCompatActivity {
         mMessenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), BinderService.class);
-//
-//                getApplicationContext().stopService(intent);
+                Intent intent = new Intent(getApplicationContext(), MessengerActivity.class);
+                getApplicationContext().startActivity(intent);
             }
         });
 

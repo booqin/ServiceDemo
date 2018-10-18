@@ -13,9 +13,12 @@
         </activity>
         <activity android:name=".MyClientActivity"/>
         <activity android:name=".MyBinderActivity" />
+        <activity android:name=".MessengerActivity" />
         <service android:name=".services.BinderService"/>
         <service android:name=".services.RemoteService"
-            android:process=":Remote"/>
+            android:process=":remote"/>
+        <service android:name=".services.MessengerService"
+            android:process=":messenger_remote"/>
     </application>
 
 </manifest>

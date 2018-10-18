@@ -25,7 +25,7 @@ import me.boqin.servicedemo.services.RemoteService;
  * @Version
  */
 public class MyClientActivity extends AppCompatActivity {
-    private Button mStart, mStop, mBind, mUnBind, mGo, mForeground;
+    protected Button mStart, mStop, mBind, mUnBind, mGo, mForeground;
 
     private IHelloAidlInterface myService;
 
@@ -59,6 +59,10 @@ public class MyClientActivity extends AppCompatActivity {
         mUnBind.setVisibility(View.GONE);
         mForeground.setVisibility(View.GONE);
 
+        setClick();
+    }
+
+    protected void setClick() {
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
